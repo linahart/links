@@ -418,22 +418,6 @@
             }
         });
 
-        // Floating particles
-        document.addEventListener('DOMContentLoaded', function() {
-            var container = document.querySelector('.particles');
-            for (var i = 0; i < 40; i++) {
-                var p = document.createElement('div');
-                p.className = 'particle';
-                var size = Math.random() * 3 + 1;
-                p.style.cssText =
-                    'left:' + (Math.random() * 100) + '%;' +
-                    'width:' + size + 'px;height:' + size + 'px;' +
-                    'animation-duration:' + (Math.random() * 25 + 15) + 's;' +
-                    'animation-delay:' + (Math.random() * 25) + 's;' +
-                    'opacity:' + (Math.random() * 0.3 + 0.1);
-                container.appendChild(p);
-            }
-        });
     </script>
 </head>
 <body>
@@ -449,8 +433,6 @@
     <!-- Grid overlay -->
     <div class="grid-overlay"></div>
 
-    <!-- Floating particles -->
-    <div class="particles"></div>
 
     <div class="container">
         <div class="avatar-wrapper">
