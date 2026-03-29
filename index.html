@@ -7,13 +7,14 @@
     <meta name="description" content="Lina Hart - LA girl chasing sunsets and good vibes">
     <meta name="theme-color" content="#e91e63">
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
     <meta property="og:title" content="Lina Hart">
     <meta property="og:description" content="LA girl chasing sunsets and good vibes. Follow me everywhere.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://linahart.github.io/links/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -24,128 +25,245 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow: hidden;
+            background: #050510;
+            overflow-x: hidden;
         }
 
-        /* Animated gradient background */
-        .bg {
+        /* === AURORA BACKGROUND === */
+        .aurora {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
             z-index: -2;
+            overflow: hidden;
+            background: #050510;
         }
 
-        /* Floating particles */
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            mix-blend-mode: screen;
+        }
+
+        .aurora-blob:nth-child(1) {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #e91e63, transparent 70%);
+            top: -20%; left: -10%;
+            animation: auroraMove1 12s ease-in-out infinite;
+        }
+
+        .aurora-blob:nth-child(2) {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #9c27b0, transparent 70%);
+            top: 30%; right: -15%;
+            animation: auroraMove2 15s ease-in-out infinite;
+        }
+
+        .aurora-blob:nth-child(3) {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, #1a237e, transparent 70%);
+            bottom: -20%; left: 20%;
+            animation: auroraMove3 18s ease-in-out infinite;
+        }
+
+        .aurora-blob:nth-child(4) {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #ff6f00, transparent 70%);
+            top: 60%; left: -20%;
+            animation: auroraMove4 20s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        .aurora-blob:nth-child(5) {
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, #00bcd4, transparent 70%);
+            top: 10%; right: 20%;
+            animation: auroraMove5 14s ease-in-out infinite;
+            opacity: 0.25;
+        }
+
+        @keyframes auroraMove1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, 50px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+        @keyframes auroraMove2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-120px, 60px) scale(1.15); }
+            66% { transform: translate(60px, -80px) scale(0.85); }
+        }
+        @keyframes auroraMove3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(80px, -60px) scale(1.05); }
+            66% { transform: translate(-100px, -40px) scale(0.95); }
+        }
+        @keyframes auroraMove4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(150px, -80px) rotate(180deg); }
+        }
+        @keyframes auroraMove5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, 100px) scale(1.2); }
+        }
+
+        /* === GRID OVERLAY === */
+        .grid-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        /* === PARTICLES === */
         .particles {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none;
         }
+
         .particle {
             position: absolute;
-            width: 4px; height: 4px;
-            background: rgba(255,255,255,0.15);
+            background: white;
             border-radius: 50%;
-            animation: float linear infinite;
+            animation: floatUp linear infinite;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            15% { opacity: 1; transform: scale(1); }
+            85% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(0); opacity: 0; }
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
-        }
-
+        /* === ANIMATIONS === */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.4); }
-            50% { box-shadow: 0 0 20px 10px rgba(233, 30, 99, 0); }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(233,30,99,0.3), 0 0 60px rgba(233,30,99,0.1); }
+            50% { box-shadow: 0 0 30px rgba(233,30,99,0.5), 0 0 80px rgba(233,30,99,0.2); }
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        @keyframes borderRotate {
+            0% { --angle: 0deg; }
+            100% { --angle: 360deg; }
         }
 
+        /* === CONTAINER === */
         .container {
             max-width: 420px;
             width: 100%;
             text-align: center;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .avatar {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e91e63, #ff6f00, #e91e63);
-            background-size: 200% 200%;
-            animation: gradientShift 3s ease infinite, pulse 2s ease infinite;
-            margin: 0 auto 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 52px;
-            color: white;
-            border: 3px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 1s ease;
             position: relative;
         }
 
-        .avatar::after {
-            content: '';
+        /* === AVATAR === */
+        .avatar-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-ring {
             position: absolute;
             inset: -4px;
             border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.1);
+            background: conic-gradient(from 0deg, #e91e63, #9c27b0, #1a237e, #00bcd4, #ff6f00, #e91e63);
+            animation: spin 4s linear infinite;
+            opacity: 0.7;
+        }
+
+        .avatar-ring::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 50%;
+            background: #0a0a1a;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(233,30,99,0.3), rgba(156,39,176,0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            color: white;
+            position: relative;
+            z-index: 1;
+            animation: glowPulse 3s ease infinite;
         }
 
         .status-dot {
             position: absolute;
-            bottom: 8px; right: 8px;
-            width: 16px; height: 16px;
+            bottom: 10px; right: 10px;
+            width: 18px; height: 18px;
             background: #4caf50;
             border-radius: 50%;
-            border: 3px solid #1a1a2e;
-            animation: pulse 2s ease infinite;
+            border: 3px solid #0a0a1a;
+            z-index: 2;
         }
 
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: #4caf50;
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+            opacity: 0;
+        }
+
+        @keyframes ping {
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* === TYPOGRAPHY === */
         h1 {
             font-family: 'Playfair Display', serif;
             color: white;
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
+            text-shadow: 0 2px 20px rgba(233,30,99,0.3);
         }
 
         .bio {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.5);
             font-size: 14px;
-            margin-bottom: 8px;
-            line-height: 1.5;
-            font-weight: 400;
+            margin-bottom: 6px;
+            line-height: 1.6;
+            font-weight: 300;
         }
 
         .tagline {
-            color: rgba(255,255,255,0.35);
-            font-size: 11px;
-            margin-bottom: 28px;
+            color: rgba(255,255,255,0.25);
+            font-size: 10px;
+            margin-bottom: 32px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            font-weight: 500;
         }
 
+        /* === LINKS === */
         .links-wrapper {
             display: flex;
             flex-direction: column;
@@ -155,123 +273,121 @@
         .link {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: rgba(255,255,255,0.06);
+            gap: 14px;
+            background: rgba(255,255,255,0.04);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.06);
             border-radius: 16px;
-            padding: 18px 24px;
+            padding: 18px 22px;
             text-decoration: none;
             color: white;
             font-size: 15px;
             font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            animation: fadeInUp 0.6s ease backwards;
+            animation: fadeInUp 0.7s ease backwards;
         }
 
-        .link:nth-child(1) { animation-delay: 0.1s; }
-        .link:nth-child(2) { animation-delay: 0.2s; }
-        .link:nth-child(3) { animation-delay: 0.3s; }
-        .link:nth-child(4) { animation-delay: 0.4s; }
-        .link:nth-child(5) { animation-delay: 0.5s; }
+        .link:nth-child(1) { animation-delay: 0.15s; }
+        .link:nth-child(2) { animation-delay: 0.25s; }
+        .link:nth-child(3) { animation-delay: 0.35s; }
+        .link:nth-child(4) { animation-delay: 0.45s; }
+        .link:nth-child(5) { animation-delay: 0.55s; }
 
+        /* Hover glow effect */
         .link::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 3s ease infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: 0; left: -100%; right: 0; bottom: 0;
+            width: 300%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.6s;
         }
 
-        .link:hover::before { opacity: 1; }
+        .link:hover::before { left: 100%; }
 
         .link:hover {
-            background: rgba(255,255,255,0.12);
-            transform: translateY(-3px) scale(1.02);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-3px) scale(1.01);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
         }
 
-        .link:active {
-            transform: translateY(0) scale(0.98);
-        }
+        .link:active { transform: translateY(0) scale(0.98); }
 
         .link-icon {
-            font-size: 22px;
-            width: 32px;
-            text-align: center;
+            font-size: 24px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
         }
 
-        .link-text {
-            flex: 1;
-            text-align: left;
+        .link.fanvue .link-icon { background: rgba(255,64,129,0.15); }
+        .link.instagram .link-icon { background: rgba(225,48,108,0.15); }
+        .link.tiktok .link-icon { background: rgba(0,242,234,0.15); }
+        .link.twitter .link-icon { background: rgba(29,161,242,0.15); }
+        .link.fikfap .link-icon { background: rgba(156,39,176,0.15); }
+
+        .link-text { flex: 1; text-align: left; }
+
+        .link-text .title {
+            font-weight: 500;
+            font-size: 15px;
         }
 
-        .link-text span {
+        .link-text .subtitle {
             display: block;
             font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            font-weight: 400;
-            margin-top: 2px;
+            color: rgba(255,255,255,0.35);
+            font-weight: 300;
+            margin-top: 3px;
         }
 
         .link-arrow {
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.2);
+            font-size: 20px;
             transition: transform 0.3s, color 0.3s;
         }
 
         .link:hover .link-arrow {
-            transform: translateX(4px);
-            color: rgba(255,255,255,0.6);
+            transform: translateX(5px);
+            color: rgba(255,255,255,0.5);
         }
 
+        /* Fanvue special highlight */
         .link.fanvue {
-            background: linear-gradient(135deg, rgba(255,64,129,0.15), rgba(255,64,129,0.05));
-            border-color: rgba(255,64,129,0.2);
+            background: linear-gradient(135deg, rgba(255,64,129,0.12), rgba(156,39,176,0.08));
+            border-color: rgba(255,64,129,0.15);
         }
         .link.fanvue:hover {
-            background: linear-gradient(135deg, rgba(255,64,129,0.25), rgba(255,64,129,0.1));
-            border-color: rgba(255,64,129,0.4);
+            background: linear-gradient(135deg, rgba(255,64,129,0.2), rgba(156,39,176,0.12));
+            border-color: rgba(255,64,129,0.3);
+            box-shadow: 0 12px 40px rgba(233,30,99,0.2);
         }
 
-        .link.instagram {
-            border-color: rgba(225,48,108,0.15);
-        }
-
-        .link.tiktok {
-            border-color: rgba(0,242,234,0.15);
-        }
-
-        .link.twitter {
-            border-color: rgba(29,161,242,0.15);
-        }
-
-        .link.fikfap {
-            border-color: rgba(156,39,176,0.15);
-        }
-
+        /* === FOOTER === */
         .footer {
-            margin-top: 32px;
-            color: rgba(255,255,255,0.2);
-            font-size: 11px;
-            letter-spacing: 1px;
+            margin-top: 36px;
+            color: rgba(255,255,255,0.15);
+            font-size: 10px;
+            letter-spacing: 3px;
+            font-weight: 500;
         }
 
-        /* Mobile optimizations */
+        /* === MOBILE === */
         @media (max-width: 480px) {
             .container { max-width: 100%; }
-            h1 { font-size: 24px; }
-            .link { padding: 16px 20px; }
+            h1 { font-size: 26px; }
+            .link { padding: 16px 18px; }
+            .aurora-blob { opacity: 0.35; }
         }
 
-        /* Respect reduced motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -300,30 +416,47 @@
             }
         });
 
-        // Create floating particles
+        // Floating particles
         document.addEventListener('DOMContentLoaded', function() {
-            var particles = document.querySelector('.particles');
-            for (var i = 0; i < 30; i++) {
+            var container = document.querySelector('.particles');
+            for (var i = 0; i < 40; i++) {
                 var p = document.createElement('div');
                 p.className = 'particle';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 20 + 10) + 's';
-                p.style.animationDelay = (Math.random() * 20) + 's';
-                p.style.width = p.style.height = (Math.random() * 4 + 2) + 'px';
-                particles.appendChild(p);
+                var size = Math.random() * 3 + 1;
+                p.style.cssText =
+                    'left:' + (Math.random() * 100) + '%;' +
+                    'width:' + size + 'px;height:' + size + 'px;' +
+                    'animation-duration:' + (Math.random() * 25 + 15) + 's;' +
+                    'animation-delay:' + (Math.random() * 25) + 's;' +
+                    'opacity:' + (Math.random() * 0.3 + 0.1);
+                container.appendChild(p);
             }
         });
     </script>
 </head>
 <body>
-    <div class="bg"></div>
+    <!-- Aurora Background -->
+    <div class="aurora">
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+    </div>
+
+    <!-- Grid overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Floating particles -->
     <div class="particles"></div>
 
     <div class="container">
-        <div class="avatar">
-            L
+        <div class="avatar-wrapper">
+            <div class="avatar-ring"></div>
+            <div class="avatar">L</div>
             <div class="status-dot"></div>
         </div>
+
         <h1>Lina Hart</h1>
         <p class="bio">LA girl chasing sunsets and good vibes<br>Probably at the beach or making you smile</p>
         <p class="tagline">content creator</p>
@@ -331,27 +464,42 @@
         <div class="links-wrapper">
             <a href="https://www.fanvue.com/linahart" class="link fanvue" target="_blank">
                 <div class="link-icon">🔥</div>
-                <div class="link-text">Exclusive Content<span>See what you're missing</span></div>
+                <div class="link-text">
+                    <div class="title">Exclusive Content</div>
+                    <span class="subtitle">See what you've been missing</span>
+                </div>
                 <div class="link-arrow">&#8250;</div>
             </a>
             <a href="https://www.instagram.com/linahart352" class="link instagram" target="_blank">
                 <div class="link-icon">📸</div>
-                <div class="link-text">Instagram<span>Daily life & golden hour</span></div>
+                <div class="link-text">
+                    <div class="title">Instagram</div>
+                    <span class="subtitle">Daily life & golden hour</span>
+                </div>
                 <div class="link-arrow">&#8250;</div>
             </a>
             <a href="https://www.tiktok.com/@linahart_" class="link tiktok" target="_blank">
                 <div class="link-icon">🎬</div>
-                <div class="link-text">TikTok<span>Fun clips & day-in-life</span></div>
+                <div class="link-text">
+                    <div class="title">TikTok</div>
+                    <span class="subtitle">Fun clips & behind the scenes</span>
+                </div>
                 <div class="link-arrow">&#8250;</div>
             </a>
             <a href="https://x.com/LinaHart_" class="link twitter" target="_blank">
                 <div class="link-icon">💭</div>
-                <div class="link-text">X / Twitter<span>Thoughts & flirty banter</span></div>
+                <div class="link-text">
+                    <div class="title">X / Twitter</div>
+                    <span class="subtitle">Thoughts & late night talks</span>
+                </div>
                 <div class="link-arrow">&#8250;</div>
             </a>
             <a href="https://fikfap.com/user/linahart_" class="link fikfap" target="_blank">
                 <div class="link-icon">💋</div>
-                <div class="link-text">Fikfap<span>Short videos & more</span></div>
+                <div class="link-text">
+                    <div class="title">Fikfap</div>
+                    <span class="subtitle">Short videos & more of me</span>
+                </div>
                 <div class="link-arrow">&#8250;</div>
             </a>
         </div>
