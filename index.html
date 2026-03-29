@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lina Hart</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e91e63, #ff6f00);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .bio {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-bottom: 28px;
+            line-height: 1.4;
+        }
+        .link {
+            display: block;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .link.fanvue { border-left: 3px solid #ff4081; }
+        .link.instagram { border-left: 3px solid #e1306c; }
+        .link.tiktok { border-left: 3px solid #00f2ea; }
+        .link.twitter { border-left: 3px solid #1da1f2; }
+        .link.fikfap { border-left: 3px solid #9c27b0; }
+        .emoji { font-size: 20px; }
+        .footer {
+            margin-top: 30px;
+            color: rgba(255,255,255,0.3);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar">L</div>
+        <h1>Lina Hart</h1>
+        <p class="bio">LA girl chasing sunsets and good vibes<br>Probably at the beach or making you smile</p>
+
+        <a href="#" class="link fanvue">
+            <span class="emoji">🔥</span> Exclusive content on Fanvue
+        </a>
+        <a href="#" class="link instagram">
+            <span class="emoji">📸</span> Follow me on Instagram
+        </a>
+        <a href="#" class="link tiktok">
+            <span class="emoji">🎬</span> Watch my TikToks
+        </a>
+        <a href="#" class="link twitter">
+            <span class="emoji">💭</span> My thoughts on X
+        </a>
+        <a href="#" class="link fikfap">
+            <span class="emoji">💋</span> More on Fikfap
+        </a>
+
+        <p class="footer">Lina Hart</p>
+    </div>
+</body>
+</html>
