@@ -123,10 +123,12 @@
         /* === PARTICLES === */
         .particles {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: -20px; left: 0; right: 0; bottom: 0;
             z-index: -1;
             overflow: hidden;
             pointer-events: none;
+            mask-image: linear-gradient(transparent 0%, black 5%, black 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(transparent 0%, black 5%, black 95%, transparent 100%);
         }
 
         .particle {
